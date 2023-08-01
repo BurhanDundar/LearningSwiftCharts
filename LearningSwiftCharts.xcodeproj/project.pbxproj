@@ -148,7 +148,6 @@
 				9DCDE72E551CD17BCAFFE22B /* Pods-LearningSwiftCharts.debug.xcconfig */,
 				2F6C1E0FF6274F3AD39C208A /* Pods-LearningSwiftCharts.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};

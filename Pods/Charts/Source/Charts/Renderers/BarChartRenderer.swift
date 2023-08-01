@@ -379,7 +379,11 @@ open class BarChartRenderer: BarLineScatterCandleBubbleRenderer
                 context.setFillColor(dataSet.color(atIndex: j).cgColor)
             }
             
-            context.fill(barRect)
+            // Rounded Bar Chart Customization
+            let bezierPath = UIBezierPath(roundedRect: barRect, cornerRadius: 8)
+            context.addPath(bezierPath.cgPath)
+
+            context.drawPath(using: .fill)
             
             if drawBorder
             {
@@ -744,7 +748,11 @@ open class BarChartRenderer: BarLineScatterCandleBubbleRenderer
                 
                 setHighlightDrawPos(highlight: high, barRect: barRect)
                 
-                context.fill(barRect)
+                // Rounded Bar Chart Customization
+                let bezierPath = UIBezierPath(roundedRect: barRect, cornerRadius: 8)
+                context.addPath(bezierPath.cgPath)
+
+                context.drawPath(using: .fill)
             }
         }
     }
