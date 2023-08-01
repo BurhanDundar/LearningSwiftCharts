@@ -18,10 +18,14 @@ class ViewController: UIViewController {
     private func createChart() {
         // Create bar chart
         let barChart = BarChartView(frame: CGRect(x: 0, y: 0, width: view.frame.size.width, height: view.frame.size.width))
+        // barChart.doubleTapZoomEnabled = false
         
         // Configure the axis
+        let xAxis = barChart.xAxis
+        let rightAxis = barChart.rightAxis
         
         // configure the legend
+        let legend = barChart.legend
         
         // Supply data
         var entries = [BarChartDataEntry]()
@@ -34,8 +38,9 @@ class ViewController: UIViewController {
                 )
             )
         }
-        
+
         let set = BarChartDataSet(entries: entries, label: "Cost")
+        set.colors = ChartColorTemplates.colorful()
         let data = BarChartData(dataSet: set)
         
         barChart.data = data
