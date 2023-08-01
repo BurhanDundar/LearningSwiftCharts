@@ -380,7 +380,7 @@ open class BarChartRenderer: BarLineScatterCandleBubbleRenderer
             }
             
             // Rounded Bar Chart Customization
-            let bezierPath = UIBezierPath(roundedRect: barRect, cornerRadius: 8)
+            let bezierPath = UIBezierPath(roundedRect: barRect, cornerRadius: 2)
             context.addPath(bezierPath.cgPath)
 
             context.drawPath(using: .fill)
@@ -749,7 +749,7 @@ open class BarChartRenderer: BarLineScatterCandleBubbleRenderer
                 setHighlightDrawPos(highlight: high, barRect: barRect)
                 
                 // Rounded Bar Chart Customization
-                let bezierPath = UIBezierPath(roundedRect: barRect, cornerRadius: 8)
+                let bezierPath = UIBezierPath(roundedRect: barRect, cornerRadius: 2)
                 context.addPath(bezierPath.cgPath)
 
                 context.drawPath(using: .fill)

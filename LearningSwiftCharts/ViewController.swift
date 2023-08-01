@@ -37,51 +37,29 @@ class ViewController: UIViewController {
         
         // Supply data
         var entries = [BarChartDataEntry]()
-        var entries2 = [BarChartDataEntry]()
         
         for x in 0..<10 {
             entries.append(
                 BarChartDataEntry(
                     x: Double(x),
-                    y: Double.random(in: 0...30)
-                )
-            )
-            
-            entries2.append(
-                BarChartDataEntry(
-                    x: Double(x),
-                    y: Double.random(in: 0...30)
+                    yValues: [
+                        Double.random(in: 0...30),
+                        Double.random(in: 0...30)
+                    ]
                 )
             )
         }
 
-        let set = BarChartDataSet(entries: entries, label: "Label 1")
-        let set2 = BarChartDataSet(entries: entries2, label: "Label 2")
-//        set.colors = ChartColorTemplates.colorful()
-//        set2.colors = ChartColorTemplates.colorful()
+        let set = BarChartDataSet(entries: entries, label: "Label")
+        
         set.colors = [
             NSUIColor(cgColor: UIColor.systemBlue.cgColor),
-//            NSUIColor(cgColor: UIColor.systemPink.cgColor),
-//            NSUIColor(cgColor: UIColor.systemGreen.cgColor),
-//            NSUIColor(cgColor: UIColor.systemRed.cgColor),
-//            NSUIColor(cgColor: UIColor.systemPurple.cgColor),
-//            NSUIColor(cgColor: UIColor.systemOrange.cgColor),
-        ]
-
-        set2.colors = [
-            NSUIColor(cgColor: UIColor.systemYellow.cgColor),
-//            NSUIColor(cgColor: UIColor.systemBlue.cgColor),
-//            NSUIColor(cgColor: UIColor.systemRed.cgColor),
-//            NSUIColor(cgColor: UIColor.systemPurple.cgColor),
-//            NSUIColor(cgColor: UIColor.systemOrange.cgColor),
-//            NSUIColor(cgColor: UIColor.systemGreen.cgColor),
+            NSUIColor(cgColor: UIColor.systemYellow.cgColor)
         ]
         
-        let data = BarChartData(dataSets: [set,set2])
-        
+        let data = BarChartData(dataSet: set)        
         
         barChart.data = data
-        //barChart.delegate = self
         
         barChart.rightAxis.drawGridLinesEnabled = false
         barChart.rightAxis.drawAxisLineEnabled = false
