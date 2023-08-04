@@ -5,6 +5,11 @@
 //  Created by Yapı Kredi Teknoloji A.Ş. on 1.08.2023.
 //
 
+// YAPILACAKLAR
+// 1. Kolona basıldığında bir aksiyon alabilmek gerekiyor
+// 2. Kolona basıldığında sadece bir parça highlight oluyor. Tüm kolonun beraber olması gerekiyor
+
+
 // BarChartRenderer -> Rounded Bar Chart Customization (as comment)
 
 // (old) context.fill(barRect)
@@ -15,7 +20,7 @@
 import UIKit
 import Charts
 
-class ViewController: UIViewController {
+class ViewController: UIViewController { // ChartViewDelegate
     
     let dates = [
         "Tem 11",
