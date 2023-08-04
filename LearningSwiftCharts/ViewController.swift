@@ -6,8 +6,8 @@
 //
 
 // YAPILACAKLAR
-// 1. Kolona basıldığında bir aksiyon alabilmek gerekiyor
-// 2. Kolona basıldığında sadece bir parça highlight oluyor. Tüm kolonun beraber olması gerekiyor
+// 1. Kolona basıldığında sadece bir parça highlight oluyor. Tüm kolonun beraber olması gerekiyor
+// 2. Ayrı ayrı mavi ve sarı kısımların basıldığı nasıl anlaşılır ve hem ayrı hem tüm bar nasıl renk değiştiririz bi bakıcam
 
 
 // BarChartRenderer -> Rounded Bar Chart Customization (as comment)
@@ -20,7 +20,9 @@
 import UIKit
 import Charts
 
-class ViewController: UIViewController { // ChartViewDelegate
+class ViewController: UIViewController, ChartViewDelegate {
+    
+    let columnNameLabel: UILabel = UILabel()
     
     let dates = [
         "Tem 11",
@@ -44,6 +46,8 @@ class ViewController: UIViewController { // ChartViewDelegate
         // Create bar chart
         let barChart = BarChartView(frame: CGRect(x: 0, y: 0, width: view.frame.size.width, height: view.frame.size.width))
         // barChart.doubleTapZoomEnabled = false
+        
+        barChart.delegate = self
         
         barChart.drawGridBackgroundEnabled = false
         barChart.drawBordersEnabled = false
@@ -136,11 +140,30 @@ class ViewController: UIViewController { // ChartViewDelegate
         barChart.animate(yAxisDuration: 0.5, easingOption: .easeInBounce)
         
         view.addSubview(barChart)
+        view.addSubview(columnNameLabel)
+        
         barChart.center = view.center
         
-        let highlight = Highlight(x: Double(0), y: Double(0), dataSetIndex: 1, dataIndex: 0)
-        barChart.highlightValue(highlight)
+        self.columnNameLabel.translatesAutoresizingMaskIntoConstraints = false
+        self.columnNameLabel.text = "Lütfen bir kolon seçiniz..."
+        
+        self.columnNameLabel.topAnchor.constraint(equalTo: barChart.bottomAnchor, constant: 20).isActive = true
+        self.columnNameLabel.centerXAnchor.constraint(equalTo: barChart.centerXAnchor, constant: 20).isActive = true
+        self.columnNameLabel.leadingAnchor.constraint(equalTo: barChart.leadingAnchor, constant: 20).isActive = true
     }
+    
+    
+    //MARK: Chart delegate methods
+    func chartValueSelected(_ chartView: ChartViewBase, entry: ChartDataEntry, highlight: Highlight) {
+        let position = NSInteger(entry.x)
+        print(dates[position])
+        self.columnNameLabel.text = "Seçilen tarih \(dates[position])"
+    }
+    
+    func chartValueNothingSelected(_ chartView: ChartViewBase)
+        {
+            self.columnNameLabel.text = "Lütfen bir kolon seçiniz..."
+        }
     
 //    fileprivate func highlightOnLoad() {
 //        if let barChartItemModelList = orderDetailResponseModel?.barChartItemList, !barChartItemModelList.isEmpty, let index = barChartItemModelList.last?.index {
